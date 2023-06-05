@@ -1,0 +1,30 @@
+version: '3'
+services:
+  web:
+    image: zsh8/picker:latest
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - migration
+    env_file:
+      - env
+  migration:
+    image: zsh8/picker:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "sleep 3 && python manage.py migrate"
+    depends_on:
+      - db
+    env_file:
+      - env
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - env
+volumes:
+  postgres_data:
+

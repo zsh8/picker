@@ -1,0 +1,4 @@
+POSTGRES_DB=sprk_storage
+POSTGRES_USER=sprk_test
+POSTGRES_PASSWORD=sprk_test
+POSTGRES_HOST=db
